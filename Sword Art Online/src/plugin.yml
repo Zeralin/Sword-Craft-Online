@@ -1,0 +1,6 @@
+name: ZeralinSAO
+main: com.zeralin.sao.Main
+version: 1.0
+commands:
+    setHealth:
+        description: Sets the player's health.
