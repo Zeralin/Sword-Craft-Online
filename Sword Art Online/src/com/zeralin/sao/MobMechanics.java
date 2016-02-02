@@ -26,6 +26,13 @@ public class MobMechanics implements Listener{
 			e.setDroppedExp(0);
 			e.getDrops().clear();
 		}
+		
+		if (e.getEntity() instanceof Wolf && e.getEntity().getKiller() instanceof Player){
+			Wolf wolf = (Wolf) e.getEntity();
+			if (wolf.getCustomName().equalsIgnoreCase(ChatColor.WHITE + "Dire Wolf")){
+
+			}
+		}
 	}
 	
 	@EventHandler

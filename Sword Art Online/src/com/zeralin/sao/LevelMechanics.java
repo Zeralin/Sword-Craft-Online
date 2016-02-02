@@ -1,56 +1,25 @@
 package com.zeralin.sao;
 
-import java.util.HashMap;
-import java.util.Random;
-
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Wolf;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.event.player.PlayerMoveEvent;
 
 public class LevelMechanics implements Listener, CommandExecutor{
 
 	public Main main;
-	
-	public HashMap<String, Integer> xp = new HashMap<String, Integer>();	
 	
 	public LevelMechanics(Main plugin){
 		main = plugin;
 	}
 	
 	@EventHandler
-	public void onJoin(PlayerJoinEvent e){
-		if (e.getPlayer().hasPlayedBefore()){
-			
-		} else {
-			xp.put(e.getPlayer().getName(), 0);
-		}
-	}
-	
-	@EventHandler
-	public void onDeath(EntityDeathEvent e){
-		if (!(e.getEntity() instanceof Player)){
-			e.getDrops().clear();
-			e.setDroppedExp(0);
-		}
-		
-		if (e.getEntity() instanceof Wolf && e.getEntity().getKiller() instanceof Player){
-			Player player = e.getEntity().getKiller();
-			Wolf wolf = (Wolf) e.getEntity();
-			if (wolf.getCustomName().equalsIgnoreCase(ChatColor.WHITE + "Dire Wolf")){
-				Random random = new Random();
-				int exp = random.nextInt(20) + 31;
-				player.sendMessage(ChatColor.YELLOW + "+" + xp  + "/ exp for level");
-				xp.put(player.getName(), exp);
-			}
-		}
+	public void onMove(PlayerMoveEvent e){
+		main.healthMechanics.checkHealth(e.getPlayer());
 	}
 	
 	@Override
@@ -62,18 +31,44 @@ public class LevelMechanics implements Listener, CommandExecutor{
 			        if (args.length == 1){
 			        	try {
 			        		int lvl = Integer.parseInt(args[0]);
-			        		if (!(lvl < 1 || lvl > 100)){
+			        		if (!(lvl < 1 || lvl > 25)){
 				        		player.setLevel(lvl);
+				        		if (lvl == 1){ player.setMaxHealth(100);		        				
+				        		} else if (lvl == 2){ player.setMaxHealth(150);
+				        		} else if (lvl == 3){ player.setMaxHealth(200);
+				        		} else if (lvl == 4){ player.setMaxHealth(250);
+				        		} else if (lvl == 5){ player.setMaxHealth(300);
+				        		} else if (lvl == 6){ player.setMaxHealth(350);
+				        		} else if (lvl == 7){ player.setMaxHealth(400);
+				        		} else if (lvl == 8){ player.setMaxHealth(450);
+				        		} else if (lvl == 9){ player.setMaxHealth(500);
+				        		} else if (lvl == 10){ player.setMaxHealth(550);
+				        		} else if (lvl == 11){ player.setMaxHealth(600);
+				        		} else if (lvl == 12){ player.setMaxHealth(650);
+				        		} else if (lvl == 13){ player.setMaxHealth(700);
+				        		} else if (lvl == 14){ player.setMaxHealth(750);
+				        		} else if (lvl == 15){ player.setMaxHealth(800);
+				        		} else if (lvl == 16){ player.setMaxHealth(850);
+				        		} else if (lvl == 17){ player.setMaxHealth(900);
+				        		} else if (lvl == 18){ player.setMaxHealth(950);
+				        		} else if (lvl == 19){ player.setMaxHealth(1000);
+				        		} else if (lvl == 20){ player.setMaxHealth(1050);
+				        		} else if (lvl == 21){ player.setMaxHealth(1100);
+				        		} else if (lvl == 22){ player.setMaxHealth(1150);
+				        		} else if (lvl == 23){ player.setMaxHealth(1200);
+				        		} else if (lvl == 24){ player.setMaxHealth(1250);
+				        		} else if (lvl == 25){ player.setMaxHealth(1300);
+				        		}
 				        		player.sendMessage(ChatColor.WHITE + "Your level has been set to " + 
 				        		     ChatColor.GREEN + lvl + ChatColor.WHITE + "!");
 			        		} else {
-			        			cs.sendMessage(ChatColor.RED + "Invalid syntax. Use /setLevel <number>.");
+			        			cs.sendMessage(ChatColor.RED + "Invalid syntax. Use /setLevel <1-25>.");
 			        		}
 			        	} catch (Exception e){
-			        		cs.sendMessage(ChatColor.RED + "Invalid syntax. Use /setLevel <number>.");
+			        		cs.sendMessage(ChatColor.RED + "Invalid syntax. Use /setLevel <1-25>.");
 			        	}
 			        } else {
-			        	cs.sendMessage(ChatColor.RED + "Invalid syntax. Use /setLevel <number>.");
+			        	cs.sendMessage(ChatColor.RED + "Invalid syntax. Use /setLevel <1-25>.");
 			        }
 				} else {
 					cs.sendMessage(ChatColor.RED + "Invalid permissions.");
@@ -82,5 +77,5 @@ public class LevelMechanics implements Listener, CommandExecutor{
 		}
 		return true;
 	}
-
+	
 }

@@ -4,3 +4,5 @@ version: 1.0
 commands:
     setHealth:
         description: Sets the player's health.
+    setLevel:
+        description: Sets the player's level.

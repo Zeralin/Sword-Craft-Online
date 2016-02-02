@@ -18,6 +18,8 @@ public class Main extends JavaPlugin implements Listener{
 	public Plugin plugin;
 	public FloorFunctions floorFunctions;
 	public InventoryMechanics inventoryMechanics;
+	public CurrencyMechanics currencyMechanics;
+	public HealthMechanics healthMechanics;
 	
 	@Override
 	public void onEnable(){
@@ -54,16 +56,21 @@ public class Main extends JavaPlugin implements Listener{
 		pm.registerEvents(new MobMechanics(this), this);
 		pm.registerEvents(new NPCs(this), this);
 		pm.registerEvents(new HealthMechanics(this), this);
+		pm.registerEvents(new CurrencyMechanics(this), this);
+		pm.registerEvents(new LevelMechanics(this), this);
+		pm.registerEvents(new BossMechanics(this), this);
 	}
 	
 	public void setupCommands(){
 		getCommand("setHealth").setExecutor(new HealthMechanics(this));
+		getCommand("setLevel").setExecutor(new LevelMechanics(this));
 	}
 	
 	public void setupClassReference(){
 		floorFunctions = new FloorFunctions(this);
 		inventoryMechanics = new InventoryMechanics(this);
-
+        currencyMechanics = new CurrencyMechanics(this);
+        healthMechanics = new HealthMechanics(this);
 	}
 	
 	public Plugin getPlugin(){
