@@ -53,34 +53,8 @@ public class HealthMechanics implements Listener, CommandExecutor{
 	
 	public void checkHealth(Player player){
 			PlayerInventory inv = player.getInventory();
-			int lvl = player.getLevel();
-			int HP = 0;
-			if (lvl == 1){ HP = 100;		        				
-    		} else if (lvl == 2){ HP = 150;
-    		} else if (lvl == 3){ HP = 200;
-    		} else if (lvl == 4){ HP = 250;
-    		} else if (lvl == 5){ HP = 300;
-    		} else if (lvl == 6){ HP = 350;
-    		} else if (lvl == 7){ HP = 400;
-    		} else if (lvl == 8){ HP = 450;
-    		} else if (lvl == 9){ HP = 500;
-    		} else if (lvl == 10){ HP = 550;
-    		} else if (lvl == 11){ HP = 600;
-    		} else if (lvl == 12){ HP = 650;
-    		} else if (lvl == 13){ HP = 700;
-    		} else if (lvl == 14){ HP = 750;
-    		} else if (lvl == 15){ HP = 800;
-    		} else if (lvl == 16){ HP = 850;
-    		} else if (lvl == 17){ HP = 900;
-    		} else if (lvl == 18){ HP = 950;
-    		} else if (lvl == 19){ HP = 1000;
-    		} else if (lvl == 20){ HP = 1050;
-    		} else if (lvl == 21){ HP = 1100;
-    		} else if (lvl == 22){ HP = 1150;
-    		} else if (lvl == 23){ HP = 1200;
-    		} else if (lvl == 24){ HP = 1250;
-    		} else if (lvl == 25){ HP = 1300; }
-			int health = 0;
+			int HP = 100;
+			int health = 0; 
 			
 			if (inv.getHelmet() != null && inv.getHelmet().getItemMeta().hasLore()){
 				health = getHPFromLore(inv.getHelmet(), "Health");

@@ -9,10 +9,6 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-import com.connorlinfoot.titleapi.TitleAPI;
-
-import net.md_5.bungee.api.ChatColor;
-
 public class PlayerMechanics implements Listener{
 
 	public Main main;
@@ -24,11 +20,6 @@ public class PlayerMechanics implements Listener{
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e){
 		
-		TitleAPI.sendTitle(e.getPlayer(), 20, 60, 20, ChatColor.GREEN + 
-				"Welcome to Sword Craft Online!", ChatColor.AQUA + "Link Start!");
-		TitleAPI.sendTabTitle(e.getPlayer(), ChatColor.AQUA + "Welcome to Sword Craft Online!"
-				        , ChatColor.GREEN + "Please report any bugs to the GMs.");
-		
 		if (e.getPlayer().hasPlayedBefore()){
 			e.getPlayer().setHealthScale(20D);
 		    e.getPlayer().setHealthScaled(true);
@@ -36,7 +27,6 @@ public class PlayerMechanics implements Listener{
 			e.getPlayer().setMaxHealth(100D);
 			e.getPlayer().setHealth(100D);
 			e.getPlayer().setHealthScale(20D);
-			e.getPlayer().setLevel(1);
 		    e.getPlayer().setHealthScaled(true);
 		    main.inventoryMechanics.getSpawnKit(e.getPlayer());
 		}
